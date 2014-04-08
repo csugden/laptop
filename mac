@@ -115,16 +115,18 @@ fancy_echo "Installing ruby-build, to install Rubies ..."
   brew install ruby-build
 ### end mac-components/rbenv
 
-fancy_echo "Installing GNU Compiler Collection, a necessary prerequisite to installing Ruby ..."
-  brew tap homebrew/dupes
-  brew install apple-gcc42
+if ! which gcc-4.2 &>/dev/null; then
+  fancy_echo "Installing GNU Compiler Collection, a necessary prerequisite to installing Ruby ..."
+    brew tap homebrew/dupes
+    brew install apple-gcc42
+fi
+
+export CC=gcc-4.2
 
 fancy_echo "Upgrading and linking OpenSSL ..."
   brew install openssl
   brew link openssl --force
   brew install curl-ca-bundle
-
-export CC=gcc-4.2
 ### end mac-components/compiler-and-libraries
 
 ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
