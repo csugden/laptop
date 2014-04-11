@@ -1,11 +1,3 @@
-if ! which gcc-4.2 &>/dev/null; then
-  fancy_echo "Installing GNU Compiler Collection, a necessary prerequisite to installing Ruby ..."
-    brew tap homebrew/dupes
-    brew install apple-gcc42
-fi
-
-export CC=gcc-4.2
-
 fancy_echo "Upgrading and linking OpenSSL ..."
   brew install openssl
   brew link openssl --force
